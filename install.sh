@@ -1,48 +1,167 @@
 #!/bin/bash
 
+# Script d'installation i3wm complet - Version améliorée
+# Testé sur Debian 12 / Ubuntu 22.04+
+
+set -e  # Arrêt sur erreur
+set -u  # Erreur sur variable non définie
+
+# Couleurs pour l'affichage
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo_info() {
+    echo -e "${GREEN}[INFO]${NC} $1"
+}
+
+echo_warn() {
+    echo -e "${YELLOW}[WARN]${NC} $1"
+}
+
+echo_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Vérification que le script est dans le bon répertoire
+if [ ! -d ".config" ]; then
+    echo_error "Dossier .config non trouvé dans le répertoire courant"
+    echo_error "Assurez-vous d'exécuter le script depuis le dossier contenant vos configs"
+    exit 1
+fi
+
+echo_info "Mise à jour du système..."
 sudo apt update && sudo apt upgrade -y
 
+echo_info "Installation des outils de base..."
 sudo apt-get install -y wget curl git thunar
-sudo apt-get install -y arandr flameshot arc-theme feh i3blocks i3status i3 i3-wm lxappearance python3-pip rofi unclutter cargo compton papirus-icon-theme imagemagick
-sudo apt-get install -y libxcb-shape0-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev autoconf meson
-sudo apt-get install -y libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev 
 
+echo_info "Installation de l'environnement i3..."
+sudo apt-get install -y arandr flameshot arc-theme feh i3blocks i3status i3 i3-wm \
+    lxappearance python3-pip rofi unclutter cargo compton papirus-icon-theme \
+    imagemagick libxcb-shape0-dev libxcb-keysyms1-dev libpango1.0-dev \
+    libxcb-util0-dev libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev \
+    libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev \
+    libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev \
+    libxcb-xrm0 libxcb-xrm-dev autoconf meson libxcb-render-util0-dev \
+    libxcb-shape0-dev libxcb-xfixes0-dev zsh
+
+# Création du dossier fonts
 mkdir -p ~/.local/share/fonts/
 
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Iosevka.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+# Installation Sublime Text
+echo_info "Installation de Sublime Text..."
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo tee /etc/apt/keyrings/sublimehq-pub.asc > /dev/null
+echo -e 'Types: deb\nURIs: https://download.sublimetext.com/\nSuites: apt/stable/\nSigned-By: /etc/apt/keyrings/sublimehq-pub.asc' | sudo tee /etc/apt/sources.list.d/sublime-text.sources
+sudo apt-get update -y 
+sudo apt-get install -y sublime-text
 
-unzip Iosevka.zip -d ~/.local/share/fonts/
-unzip RobotoMono.zip -d ~/.local/share/fonts/
-
+# Installation des Nerd Fonts (version à jour)
+echo_info "Installation des Nerd Fonts..."
+NERD_FONT_VERSION="v3.2.1"
+wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/${NERD_FONT_VERSION}/Iosevka.zip
+wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/${NERD_FONT_VERSION}/RobotoMono.zip
+unzip -q Iosevka.zip -d ~/.local/share/fonts/
+unzip -q RobotoMono.zip -d ~/.local/share/fonts/
+rm Iosevka.zip RobotoMono.zip
 fc-cache -fv
 
-wget https://github.com/barnumbirr/alacritty-debian/releases/download/v0.10.0-rc4-1/alacritty_0.10.0-rc4-1_amd64_bullseye.deb
-sudo dpkg -i alacritty_0.10.0-rc4-1_amd64_bullseye.deb
-sudo apt install -f
+# Installation Alacritty
+echo_info "Installation d'Alacritty..."
+if ! command -v alacritty &> /dev/null; then
+    # Méthode 1: Via cargo (recommandé)
+    echo_info "Installation d'Alacritty via cargo..."
+    cargo install alacritty
+    
+    # Si cargo install échoue, essayer via apt (si disponible)
+    if ! command -v alacritty &> /dev/null; then
+        echo_warn "Installation cargo échouée, tentative via apt..."
+        sudo apt-get install -y alacritty || echo_warn "Alacritty non disponible via apt"
+    fi
+else
+    echo_info "Alacritty déjà installé"
+fi
+
+# Compilation i3-gaps
+echo_info "Compilation d'i3-gaps..."
+if [ -d "i3-gaps" ]; then
+    echo_warn "Dossier i3-gaps existe déjà, suppression..."
+    rm -rf i3-gaps
+fi
 
 git clone https://www.github.com/Airblader/i3 i3-gaps
-cd i3-gaps && mkdir -p build && cd build && meson ..
+cd i3-gaps
+mkdir -p build && cd build
+meson --prefix /usr/local ..
 ninja
 sudo ninja install
 cd ../..
 
-pip3 install pywal
+# Installation pywal
+echo_info "Installation de pywal..."
+pip3 install pywal --break-system-packages 2>/dev/null || pip3 install pywal
 
+# Création des dossiers de configuration
+echo_info "Création de l'arborescence de configuration..."
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/compton
 mkdir -p ~/.config/rofi
 mkdir -p ~/.config/alacritty
+
+# Copie des fichiers de configuration
+echo_info "Copie des fichiers de configuration..."
 cp .config/i3/config ~/.config/i3/config
-cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 cp .config/i3/i3blocks.conf ~/.config/i3/i3blocks.conf
+cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
+chmod +x ~/.config/i3/clipboard_fix.sh
+
+cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 cp .config/compton/compton.conf ~/.config/compton/compton.conf
 cp .config/rofi/config ~/.config/rofi/config
 cp .fehbg ~/.fehbg
-cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
-cp -r .wallpaper ~/.wallpaper 
+chmod +x ~/.fehbg
 
-echo "Done! Grab some wallpaper and run pywal -i filename to set your color scheme. To have the wallpaper set on every boot edit ~.fehbg"
-echo "After reboot: Select i3 on login, run lxappearance and select arc-dark"
+# Copie des wallpapers
+if [ -d ".wallpaper" ]; then
+    cp -r .wallpaper ~/.wallpaper
+    echo_info "Wallpapers copiés dans ~/.wallpaper"
+fi
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Nettoyage
+echo_info "Nettoyage des fichiers temporaires..."
+rm -rf i3-gaps
+
+echo ""
+echo_info "═══════════════════════════════════════════════════════════"
+echo_info "Installation terminée avec succès!"
+echo_info "═══════════════════════════════════════════════════════════"
+echo ""
+echo_info "Prochaines étapes:"
+echo "  1. Choisir un wallpaper et exécuter: pywal -i /path/to/image"
+echo "  2. Éditer ~/.fehbg pour définir le wallpaper au démarrage"
+echo "  3. Redémarrer votre système"
+echo "  4. Sélectionner 'i3' sur l'écran de connexion"
+echo "  5. Lancer 'lxappearance' et sélectionner 'Arc-Dark'"
+echo ""
+
+# Installation Oh-My-Zsh (optionnelle)
+echo ""
+read -p "Voulez-vous installer Oh-My-Zsh? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo_info "Installation d'Oh-My-Zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    
+    # Définir zsh comme shell par défaut
+    if [ -f /usr/bin/zsh ]; then
+        echo_info "Définition de zsh comme shell par défaut..."
+        chsh -s $(which zsh)
+        echo_warn "Vous devrez vous reconnecter pour que zsh devienne le shell par défaut"
+    fi
+else
+    echo_info "Oh-My-Zsh non installé"
+fi
+
+echo ""
+echo_info "Configuration terminée! Profitez de votre nouvel environnement i3wm! 🚀"
