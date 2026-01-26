@@ -1,21 +1,62 @@
-rofi.modi:                           window,run
-rofi.opacity:                        30
-rofi.theme: solarized
-rofi.font: DejaVu Sans Mono 12
-rofi.lines: 15
-rofi.columns:                        3
-rofi.levenshtein-sort:               true 
-rofi.auto-select:                    false
-rofi.combi-modi:                     window,run
-rofi.fuzzy:                          true
-rofi.separator-style:                solid
-rofi.hide-scrollbar:                 true
-rofi.fullscreen:                     false
+configuration {
+    /* Modes */
+    modi: "window,run,drun,ssh";
+    combi-modi: "window,run,drun";
+    
+    /* Apparence */
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    font: "DejaVu Sans Mono 12";
+    
+    /* Comportement */
+    lines: 15;
+    columns: 3;
+    levenshtein-sort: true;
+    auto-select: false;
+    fuzzy: true;
+    
+    /* Display */
+    display-window: " Window";
+    display-run: " Run";
+    display-drun: " Apps";
+    display-ssh: " SSH";
+    display-combi: " All";
+    
+    /* Interface */
+    separator-style: "solid";
+    hide-scrollbar: true;
+    fullscreen: false;
+    
+    /* Raccourcis personnalisés */
+    kb-row-left: "Control+Page_Up,Control+c";
+    kb-row-right: "Control+Page_Down,Control+r";
+    kb-row-up: "Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Control+s";
+    kb-row-down: "Down,Control+n,Control+t";
+    
+    /* Désactiver certains raccourcis par défaut si nécessaire */
+    kb-cancel: "Escape,Control+g,Control+bracketleft";
+    kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";
+}
 
-rofi.kb-row-left:                    Control+Page_Up,Control+c
-rofi.kb-row-right:                   Control+Page_Down,Control+r
-rofi.kb-row-up:                      
-Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Control+s
-rofi.kb-row-down:                    Down,Control+n,Control+t
+/* Import du thème Arc-Dark comme base */
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
 
-rofi.theme: /usr/share/rofi/themes/Arc-Dark.rasi
+/* Personnalisation par-dessus le thème */
+* {
+    background-opacity: 95%;
+}
+
+window {
+    transparency: "real";
+    background-color: rgba(45, 48, 59, 0.95);
+    border: 2px;
+    border-color: #5294e2;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+element selected {
+    background-color: #5294e2;
+    text-color: #ffffff;
+    border-radius: 4px;
+}

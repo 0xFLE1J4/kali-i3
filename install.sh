@@ -36,6 +36,8 @@ sudo apt update && sudo apt upgrade -y
 
 echo_info "Installation des outils de base..."
 sudo apt-get install -y wget curl git thunar
+curl https://sh.rustup.rs -sSf | sh
+
 
 echo_info "Installation de l'environnement i3..."
 sudo apt-get install -y arandr flameshot arc-theme feh i3blocks i3status i3 i3-wm \
