@@ -124,6 +124,11 @@ cp .config/rofi/config ~/.config/rofi/config
 cp .fehbg ~/.fehbg
 chmod +x ~/.fehbg
 
+# wallpaper configuration
+echo_info "wallpaper configuration..."
+cp .config/i3/wallpaper.sh ~/.config/i3/wallpaper.sh
+chmod +x ~/.config/i3/wallpaper.sh
+
 # Copie des wallpapers
 if [ -d ".wallpaper" ]; then
     cp -r .wallpaper ~/.wallpaper
