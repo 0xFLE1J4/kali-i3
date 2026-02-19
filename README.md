@@ -1,20 +1,74 @@
-# Kali-Clean
+# Kali-i3 
 
-My kali i3 desktop setup. Some people have been asking so I wrote a quick installer to get going. 
+A customized i3wm setup for Kali Linux, featuring an i3blocks status bar,
+rofi as application launcher, and Nerd Fonts for a clean look.
 
-After cloning the repo just run ./install.sh from a non-root user. This updates kali and installs a lot of stuff, so it will take a while. Feel free to optimize ;)
+## Requirements
+
+- Kali Linux (Debian-based)
+- Non-root user with sudo privileges
+- Git installed
 
 ## Installation
 
-```
+Clone the repo and run the install script:
+
+```js
+git clone git@github.com:0xFLE1J4/kali-i3.git
+cd kali-i3
 ./install.sh
 ```
 
-After the script is done reboot and select i3 (top right corner) on the login screen. Then open a terminal (`ctrl+return`) run `lxappearance`and select ark-dark theme and change the icons to whatever you like (I used papyrus).
+The script will update your system and install all required packages.
 
-## Credits
+## After Installation
 
-Wallpaper by Wenqing Yan ( https://www.yuumeiart.com/ ) 
+1. Reboot your system
+2. On the login screen, select **i3** (top right corner)
+3. Open a terminal with `$mod+Return`
+
+
+## Key Bindings
+
+| Shortcut             | Action                  |
+| -------------------- | ----------------------- |
+| `$mod+Return`        | Terminal (Alacritty)    |
+| `$mod+Space`         | App launcher (Rofi)     |
+| `$mod+w`             | Close focused window    |
+| `$mod+h/j/k/l`       | Focus (Vim-style)       |
+| `$mod+Shift+h/j/k/l` | Move window (Vim-style) |
+| `$mod+1..0`          | Switch workspace        |
+| `$mod+c`             | Cycle wallpaper         |
+| `$mod+p`             | Screenshot (Flameshot)  |
+| `$mod+Shift+c`       | Reload i3 config        |
+| `$mod+Shift+r`       | Restart i3              |
+| `$mod+Shift+e`       | Exit i3                 |
+
+## What's Included
+
+- **i3** — tiling window manager with gaps
+- **i3blocks** — status bar (CPU, RAM, disk, network, time)
+- **Rofi** — application launcher
+- **Alacritty** — GPU-accelerated terminal
+- **Picom** — compositor (transparency, shadows)
+- **Feh** — wallpaper manager with auto-cycling
+- **Flameshot** — screenshot tool
+- **Nerd Fonts** — Iosevka & RobotoMono
+- **Oh-My-Zsh** — optional, prompted at end of install
+
+## Structure
+
+    .config/
+    ├── i3/
+    │   ├── config            # i3 configuration
+    │   ├── i3blocks.conf     # Status bar
+    │   ├── wallpaper.sh      # Wallpaper cycling
+    │   └── clipboard_fix.sh  # VM clipboard fix
+    ├── alacritty/
+    │   └── alacritty.toml
+    └── rofi/
+        └── config
+    .wallpaper/               # Drop your wallpapers here
 
 
 ## Final
