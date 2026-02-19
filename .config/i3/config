@@ -161,3 +161,6 @@ bindsym $mod+n exec subl
 
 # firefox
 bindsym $mod+b exec firefox
+
+# wallpaper
+bindsym $mod+c exec ~/.config/i3/wallpaper.sh
