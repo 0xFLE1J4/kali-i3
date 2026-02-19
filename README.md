@@ -15,3 +15,9 @@ After the script is done reboot and select i3 (top right corner) on the login sc
 ## Credits
 
 Wallpaper by Wenqing Yan ( https://www.yuumeiart.com/ ) 
+
+
+## Final
+<img width="1901" height="1026" alt="image" src="https://github.com/user-attachments/assets/ec3dcc38-c0cf-4eea-95c8-94047ca0221f" />
+<img width="1900" height="624" alt="image" src="https://github.com/user-attachments/assets/9ff4218d-6cfa-4c3d-8583-55c16111af93" />
+
