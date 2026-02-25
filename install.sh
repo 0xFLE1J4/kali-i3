@@ -47,7 +47,7 @@ sudo apt-get install -y arandr flameshot arc-theme feh i3blocks i3status i3 i3-w
     libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev \
     libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev \
     libxcb-xrm0 libxcb-xrm-dev autoconf meson libxcb-render-util0-dev \
-    libxcb-shape0-dev libxcb-xfixes0-dev zsh
+    libxcb-shape0-dev libxcb-xfixes0-dev zsh picom
 
 # Création du dossier fonts
 mkdir -p ~/.local/share/fonts/
@@ -110,6 +110,7 @@ mkdir -p ~/.config/i3
 mkdir -p ~/.config/compton
 mkdir -p ~/.config/rofi
 mkdir -p ~/.config/alacritty
+mkdir -p ~/.config/picom
 
 # Copie des fichiers de configuration
 echo_info "Copie des fichiers de configuration..."
@@ -121,8 +122,7 @@ chmod +x ~/.config/i3/clipboard_fix.sh
 cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 cp .config/compton/compton.conf ~/.config/compton/compton.conf
 cp .config/rofi/config ~/.config/rofi/config
-cp .fehbg ~/.fehbg
-chmod +x ~/.fehbg
+cp .config/picom/picom.conf ~/.config/picom/picom.conf
 
 # wallpaper configuration
 echo_info "wallpaper configuration..."
