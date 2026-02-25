@@ -114,6 +114,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
 # i3bar with i3blocks
 bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
@@ -157,6 +158,7 @@ bindsym $mod+Ctrl+Shift+Left resize grow width 10 px or 10 ppt
 bindsym $mod+p exec flameshot gui
 
 # sublime text
+
 bindsym $mod+n exec subl
 
 # firefox
@@ -164,3 +166,6 @@ bindsym $mod+b exec firefox
 
 # wallpaper
 bindsym $mod+c exec ~/.config/i3/wallpaper.sh
+
+# picom startup
+exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
