@@ -14,7 +14,7 @@ rofi as application launcher, and Nerd Fonts for a clean look.
 Clone the repo and run the install script:
 
 ```js
-git clone git@github.com:0xFLE1J4/kali-i3.git
+git clone https://github.com/0xFLE1J4/kali-i3.git
 cd kali-i3
 ./install.sh
 ```
