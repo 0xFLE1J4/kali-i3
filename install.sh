@@ -107,7 +107,6 @@ pip3 install pywal --break-system-packages 2>/dev/null || pip3 install pywal
 # Création des dossiers de configuration
 echo_info "Création de l'arborescence de configuration..."
 mkdir -p ~/.config/i3
-mkdir -p ~/.config/compton
 mkdir -p ~/.config/rofi
 mkdir -p ~/.config/alacritty
 mkdir -p ~/.config/picom
@@ -119,8 +118,7 @@ cp .config/i3/i3blocks.conf ~/.config/i3/i3blocks.conf
 cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
 chmod +x ~/.config/i3/clipboard_fix.sh
 
-cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-cp .config/compton/compton.conf ~/.config/compton/compton.conf
+cp .config/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 cp .config/rofi/config ~/.config/rofi/config
 cp .config/picom/picom.conf ~/.config/picom/picom.conf
 
