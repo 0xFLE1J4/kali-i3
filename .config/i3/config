@@ -160,11 +160,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+q exec ~/.config/i3/wallpaper.sh
 
 # shutdown in 10s
-bindsym $mod+s exec sleep 10 && shutdown 0
-
-# Cancel a pending shutdown
-bindsym $mod+Shift+s exec shutdown -c
-
+bindsym $mod+Ctrl+s exec shutdown
 
 # picom startup
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
