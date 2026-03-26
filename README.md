@@ -29,6 +29,7 @@ The script will update your system and install all required packages.
 
 
 ## Key Bindings
+`mod` --> Alt
 
 | Shortcut             | Action                  |
 | -------------------- | ----------------------- |
@@ -40,11 +41,15 @@ The script will update your system and install all required packages.
 | `$mod+1..0`          | Switch workspace        |
 | `$mod+q`             | Cycle wallpaper         |
 | `$mod+p`             | Screenshot (Flameshot)  |
-| `$mod+s`             | shutdown                |
-| `$mod+Shift+s`       | shutdown -c             |
+| `$mod+Ctrl+s`        | shutdown                |
 | `$mod+Shift+c`       | Reload i3 config        |
 | `$mod+Shift+r`       | Restart i3              |
 | `$mod+Shift+e`       | Exit i3                 |
+
+## Alacritty
+| `Alt+c`              | Copy                    |
+| `Alt+v`              | Paste                   |
+
 
 ## What's Included
 
