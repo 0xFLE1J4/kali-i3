@@ -38,8 +38,10 @@ The script will update your system and install all required packages.
 | `$mod+h/j/k/l`       | Focus (Vim-style)       |
 | `$mod+Shift+h/j/k/l` | Move window (Vim-style) |
 | `$mod+1..0`          | Switch workspace        |
-| `$mod+c`             | Cycle wallpaper         |
+| `$mod+q`             | Cycle wallpaper         |
 | `$mod+p`             | Screenshot (Flameshot)  |
+| `$mod+s`             | shutdown                |
+| `$mod+Shift+s`       | shutdown -c             |
 | `$mod+Shift+c`       | Reload i3 config        |
 | `$mod+Shift+r`       | Restart i3              |
 | `$mod+Shift+e`       | Exit i3                 |
