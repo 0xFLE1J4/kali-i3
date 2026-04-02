@@ -1,0 +1,79 @@
+configuration {
+    modi:                       "drun,run,window";
+    font:                       "Iosevka Nerd Font 12";
+    show-icons:                 true;
+    display-drun:               " ";
+    display-run:                " ";
+    display-window:             " ";
+    drun-display-format:        "{name}";
+}
+
+@theme "/dev/null"
+
+* {
+    bg:          #0D0D0D;
+    fg:          #FFFFFF;
+    accent:      #00F3FF;
+    urgent:      #FF0055;
+    
+    background-color:   transparent;
+    text-color:         @fg;
+}
+
+window {
+    background-color:   @bg;
+    border:             1px;
+    border-color:       @accent;
+    width:              600px;
+    anchor:             center;
+    location:           center;
+}
+
+mainbox {
+    children:           [ inputbar, listview ];
+    padding:            20px;
+}
+
+inputbar {
+    children:           [ prompt, entry ];
+    background-color:   #1A1A1A;
+    border-radius:      4px;
+    padding:            10px;
+    margin:             0 0 10px 0;
+}
+
+prompt {
+    text-color:         @accent;
+    padding:            0 10px 0 5px;
+}
+
+entry {
+    placeholder:        "Executing command...";
+    placeholder-color:  #444444;
+}
+
+listview {
+    lines:              10;
+    columns:            1;
+    fixed-height:       true;
+    scrollbar:          false;
+}
+
+element {
+    padding:            8px;
+    spacing:            10px;
+}
+
+element selected {
+    background-color:   @accent;
+    text-color:         @bg;
+    border-radius:      2px;
+}
+
+element-icon {
+    size:               24px;
+}
+
+element-text {
+    vertical-align:     0.5;
+}
