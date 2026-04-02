@@ -47,6 +47,7 @@ The script will update your system and install all required packages.
 | `$mod+Shift+e`       | Exit i3                 |
 
 ## Alacritty
+| -------------------- | ----------------------- |
 | `Alt+c`              | Copy                    |
 | `Alt+v`              | Paste                   |
 
@@ -67,18 +68,27 @@ The script will update your system and install all required packages.
 
     .config/
     ├── i3/
-    │   ├── config            # i3 configuration
-    │   ├── i3blocks.conf     # Status bar
-    │   ├── wallpaper.sh      # Wallpaper cycling
-    │   └── clipboard_fix.sh  # VM clipboard fix
+    │   ├── clipboard_fix.sh      # VM clipboard fix
+    │   ├── config                # i3 configuration
+    │   └── wallpaper.sh          # Wallpaper cycling
+    │
+    ├── i3blocks/
+    │   ├── cpu_useage.sh
+    │   └── i3blocks.conf
+    │
+    ├── picom/
+    │   └── picom.conf            # Picom configuration
+    │   
     ├── alacritty/
-    │   └── alacritty.toml
+    │   └── alacritty.toml        # Alacritty configuration
+    │  
     └── rofi/
-        └── config
+        └── config.rasi           # rofi configuration
+    
     .wallpaper/               # Drop your wallpapers here
 
 
 ## Final
-<img width="1901" height="1026" alt="image" src="https://github.com/user-attachments/assets/ec3dcc38-c0cf-4eea-95c8-94047ca0221f" />
-<img width="1900" height="624" alt="image" src="https://github.com/user-attachments/assets/9ff4218d-6cfa-4c3d-8583-55c16111af93" />
+<img width="1908" height="1036" alt="image" src="https://github.com/user-attachments/assets/c22a12d1-c43c-4c75-9332-be64a2f3279b" />
+
 
