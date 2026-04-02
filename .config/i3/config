@@ -117,11 +117,11 @@ bindsym $mod+r mode "resize"
 
 # i3bar with i3blocks
 bar {
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     i3bar_command i3bar -t
     position top
     height 26
-    font pango:RobotoMono Nerd Font Regular 7.5
+    font pango:RobotoMono Nerd Font Regular 9.5
     colors {
         statusline #E6FFF5
         background #1C1D2B88
@@ -161,6 +161,7 @@ bindsym $mod+q exec ~/.config/i3/wallpaper.sh
 
 # shutdown in 10s
 bindsym $mod+Ctrl+s exec shutdown
+
 
 # picom startup
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
