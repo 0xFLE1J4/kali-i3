@@ -47,9 +47,10 @@ The script will update your system and install all required packages.
 | `$mod+Shift+e`       | Exit i3                 |
 
 ## Alacritty
-| -------------------- | ----------------------- |
-| `Alt+c`              | Copy                    |
-| `Alt+v`              | Paste                   |
+| Raccourci | Action |
+| :--- | :--- |
+| `Alt+c` | Copy |
+| `Alt+v` | Paste |
 
 
 ## What's Included
