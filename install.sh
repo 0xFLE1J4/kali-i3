@@ -114,16 +114,24 @@ mkdir -p ~/.config/i3blocks
 
 # Copie des fichiers de configuration
 echo_info "Copie des fichiers de configuration..."
-cp .config/i3/config ~/.config/i3/config
-cp .config/i3blocks/i3blocks.conf ~/.config/i3blocks/i3blocks.conf
-cp .config/i3blocks/cpu_useage.sh ~/.config/i3blocks/cpu_useage.sh
-chmod +x ~/.config/i3blocks/cpu_useage.sh
-cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
-chmod +x ~/.config/i3/clipboard_fix.sh
+# ─── i3 Window Manager ────────────────────────────────────
+cp .config/i3/config ~/.config/i3/config                        # Copy i3 main config
+cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh   # Copy clipboard fix script
+chmod +x ~/.config/i3/clipboard_fix.sh                         # Make it executable
 
-cp .config/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
-cp .config/rofi/config ~/.config/rofi/config
-cp .config/picom/picom.conf ~/.config/picom/picom.conf
+# ─── i3blocks (status bar) ────────────────────────────────
+cp .config/i3blocks/i3blocks.conf ~/.config/i3blocks/i3blocks.conf     # Copy i3blocks config
+cp .config/i3blocks/cpu_useage.sh ~/.config/i3blocks/cpu_useage.sh     # Copy CPU usage script
+chmod +x ~/.config/i3blocks/cpu_useage.sh                              # Make it executable
+
+# ─── Alacritty (terminal) ─────────────────────────────────
+cp .config/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml # Copy terminal config
+
+# ─── Rofi (app launcher) ──────────────────────────────────
+cp .config/rofi/config.rasi ~/.config/rofi/config.rasi          # Copy rofi theme/config
+
+# ─── Picom (compositor) ───────────────────────────────────
+cp .config/picom/picom.conf ~/.config/picom/picom.conf          # Copy compositor config
 
 # wallpaper configuration
 echo_info "wallpaper configuration..."
