@@ -110,11 +110,14 @@ mkdir -p ~/.config/i3
 mkdir -p ~/.config/rofi
 mkdir -p ~/.config/alacritty
 mkdir -p ~/.config/picom
+mkdir -p ~/.config/i3blocks
 
 # Copie des fichiers de configuration
 echo_info "Copie des fichiers de configuration..."
 cp .config/i3/config ~/.config/i3/config
-cp .config/i3/i3blocks.conf ~/.config/i3/i3blocks.conf
+cp .config/i3blocks/i3blocks.conf ~/.config/i3blocks/i3blocks.conf
+cp .config/i3blocks/cpu_useage.sh ~/.config/i3blocks/cpu_useage.sh
+chmod +x ~/.config/i3blocks/cpu_useage.sh
 cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
 chmod +x ~/.config/i3/clipboard_fix.sh
 
